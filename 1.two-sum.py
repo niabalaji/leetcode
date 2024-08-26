@@ -17,7 +17,7 @@ class Solution(object):
         for i,num in enumerate(nums):
             other = target - num 
             if other in nummap:
-                return [nummap[other],i]
+                return [nummap[other],i] # nummap[other] returns value = index
             nummap[num] = i 
             
 
