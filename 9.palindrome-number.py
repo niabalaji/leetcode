@@ -28,4 +28,6 @@ class Solution(object):
         return x == reversed_half or x == reversed_half // 10
         
 # @lc code=end
-
+solution = Solution()
+x = 101
+print(solution.isPalindrome(x))

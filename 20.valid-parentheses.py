@@ -30,7 +30,7 @@ class Solution(object):
         for char in s: 
             if char in bracket:
                 stack.append(char)
-            elif char == bracket.values:
+            elif char in bracket.values:
                 if (len(stack) == 0):
                     return False
                 else: 
