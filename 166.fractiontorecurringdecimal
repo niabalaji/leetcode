@@ -1,0 +1,38 @@
+class Solution(object):
+    def fractionToDecimal(self, numerator, denominator):
+        if numerator == 0:
+            return "0"
+
+        result = []
+        # Handle the sign
+        if (numerator < 0) ^ (denominator < 0):
+            result.append("-")
+
+        # Convert to absolute values
+        numerator, denominator = abs(numerator), abs(denominator)
+
+        # Integer part
+        result.append(str(numerator // denominator))
+        remainder = numerator % denominator
+
+        if remainder == 0:
+            return ''.join(result)
+
+        result.append(".")
+
+        # Fractional part
+        fraction_part = {}
+        while remainder != 0:
+            if remainder in fraction_part:
+                # Repeating part found
+                index = fraction_part[remainder]
+                result.insert(index, "(")
+                result.append(")")
+                break
+            fraction_part[remainder] = len(result)
+            remainder *= 10
+            result.append(str(remainder // denominator))
+            remainder %= denominator
+
+        return ''.join(result)
+        
