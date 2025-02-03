@@ -1,0 +1,20 @@
+class Solution(object):
+    def topKFrequent(self,nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        # using min heap priority queue algorithm 
+        hashmap = {}
+        # create a hashmap to hold unique elements and num of occurences 
+        for x in nums: 
+            hashmap[x] = hashmap.get(x,0) + 1
+        import heapq
+        return heapq.nlargest(k,hashmap.keys(),key= hashmap.get)
+    
+nums = [1,1,1,2,2,3]
+k = 2
+sol = Solution()
+print(sol.topKFrequent(nums,k))
+                    
