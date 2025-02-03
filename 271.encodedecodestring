@@ -1,0 +1,39 @@
+class Codec:
+
+    def encode(self, strs):
+        """Encodes a list of strings to a single string.
+        :type strs: List[str]
+        :rtype: str
+        """
+        # add all words together
+        # add (len of str) and (delimiter) before each word
+        encodedstring = ""
+        for a in strs: 
+            encodedstring += str(len(a))+ "?" + a # 5?Hello5..
+        return encodedstring
+
+    def decode(self, s):
+        """Decodes a single string to a list of strings.
+        :type s: str
+        :rtype: List[str]
+        """
+        # listofstring = [len of str][delimiter][string]
+        listofstring = [] 
+        # each char in encodedstring
+        char = 0
+
+        while char < len(s):
+            finddelimiter = char
+            while s[finddelimiter] != "?": # find delim
+                finddelimiter +=1
+            # at delimiter
+            lengthofstr = int(s[char:finddelimiter]) # [i=len(s):j=delim(but not including j)]
+            listofstring.append(s[finddelimiter+1:finddelimiter+lengthofstr+1])
+            char = finddelimiter + 1 + lengthofstr
+        return listofstring
+        
+
+# Your Codec object will be instantiated and called as such:
+strs = ["Hello","World"]
+codec = Codec()
+print((codec.encode(strs)))
