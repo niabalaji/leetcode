@@ -1,0 +1,38 @@
+class Solution(object):
+    def groupAnagrams(self, strs):
+        # brute force / sorting : 
+                # sort strings in strs
+                # each unique sorted string is a key in hashmap 
+                # add each (unsorted) string as a value in the hashmap
+                    # potential error: cannot return hashmap (each key can have multiple values) 
+                    # fix -> turn the hashmap into [str]key - [list of str]value
+        '''hashmap = {}
+        for s in strs: 
+            sortedstr = ''.join(sorted(s))
+            if sortedstr not in hashmap:
+                hashmap[sortedstr] = []
+            hashmap[sortedstr].append(s)
+        # we only want to return the values of the hashmap not keys.
+        # .values() -> returns values of dictionary in python
+        return list(hashmap.values())''' 
+        # without sorting
+        hashmap = {}
+        for s in strs:
+            count = [0] * 26
+            for char in s:
+                count[(ord(char) - (ord("a")))] +=1 
+        
+            key = tuple(count)
+            if key not in hashmap:
+                hashmap[key] = []
+            hashmap[key].append(s)
+        return list(hashmap.values())        
+
+
+
+        
+        
+        
+
+            
+        
