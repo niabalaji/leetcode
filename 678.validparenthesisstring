@@ -1,0 +1,20 @@
+class Solution(object):
+    def checkValidString(self, s):
+        low = high = 0
+    
+        for char in s:
+            # Treat '*' as '('
+            low += 1 if char == '(' else -1
+            # Treat '*' as ')'
+            high += 1 if char != ')' else -1
+            
+            # Ensure that low does not go negative
+            low = max(low, 0)
+            
+            # If high goes negative, it means too many ')' without corresponding '(' or '*'
+            if high < 0:
+                return False
+        
+        # If low is 0 at the end, it means the string is valid
+        return low == 0
+            
