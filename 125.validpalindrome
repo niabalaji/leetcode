@@ -1,0 +1,18 @@
+class Solution(object):
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        newStr = ""
+        
+        for char in s: 
+            if (char.isalnum()):
+                newStr += char.lower()
+        newStr = str(newStr)
+        reverseStr = newStr[::-1]
+        return (reverseStr == newStr)      
+
+sol = Solution()
+input = "race a car" 
+print(sol.isPalindrome(input))
