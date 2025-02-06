@@ -1,0 +1,23 @@
+class Solution(object):
+    def longestConsecutive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # check to see if n in num has a left neighbor(prev conseq value)
+            # if no - start of sequence
+                # check if n+1 in nums
+                    # if yes increase length counter
+        # use a hashset 
+        numsSet = set(nums)
+        longest = 0 
+        
+        for n in numsSet:
+            if (n-1) not in numsSet: # check if num is start of sequence
+                length = 0 
+                while (n+length) in numsSet:
+                    length += 1 
+                longest = max(longest,length)
+        return longest
+
+        
