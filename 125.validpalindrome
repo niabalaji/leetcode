@@ -4,6 +4,8 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
+        # brute force sol - using extra memory and python built in function 
+        """
         newStr = ""
         
         for char in s: 
@@ -11,7 +13,26 @@ class Solution(object):
                 newStr += char.lower()
         newStr = str(newStr)
         reverseStr = newStr[::-1]
-        return (reverseStr == newStr)      
+        return (reverseStr == newStr)  """
+
+        left = 0 
+        right = len(s)-1
+        while left < right: 
+            while left < right and not self.isalphanum(s[left]):
+                left+=1
+            while left < right and not self.isalphanum(s[right]):
+                right-=1
+            if s[left].lower() != s[right].lower():
+                return False
+            left+=1
+            right-=1
+        return True
+
+
+    def isalphanum(self,c):
+        return (ord("A") <= ord(c) <= ord("Z") or 
+                ord("a") <= ord(c) <= ord("z") or 
+                ord("0") <= ord(c) <= ord("9"))  
 
 sol = Solution()
 input = "race a car" 
