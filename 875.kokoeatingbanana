@@ -1,0 +1,26 @@
+import math
+class Solution(object):
+    def minEatingSpeed(self, piles, h):
+        """
+        :type piles: List[int]
+        :type h: int
+        :rtype: int
+        """
+        # we can see that the possible answer is in range 1 - (max val in [piles])
+        l,r = 1, max(piles)
+        res = r
+        # binary search
+        while l <= r: 
+            k = (l+r) // 2
+            hours = 0
+            # find how many hours it takes to eat each pile (round up) (for some reason math.ceil not working here)
+            for b in piles: 
+                hours += (b+k-1) // k 
+            if hours <= h: 
+                res = min(k,res) # update res with smallest k val
+                r = k - 1
+            else: 
+                l = k + 1
+        return res
+
+
