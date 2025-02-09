@@ -1,0 +1,30 @@
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        newList = [] 
+        # can we just convert it to a 1-d list and do regular binary search? 
+        for row in matrix: # iterates through each list
+            for val in row: # iterate through values in each list
+                newList.append(val)
+        # binary search on newList
+
+        l,r = 0, len(newList)-1  #left, right, mid pointer
+
+        for x in range(len(newList)):
+            m = (l+r)//2
+            if (newList[m]) < target:
+                l = m 
+                l += 1 
+            elif (newList[m]) > target:
+                r = m 
+                r -= 1
+            elif (newList[m]) == target:
+                return True 
+        return False
+
+
+        
