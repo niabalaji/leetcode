@@ -1,0 +1,29 @@
+class Solution(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # binary search 
+        # check if midpoint is in left sorted array or right sorted array
+            # check if array is already sorted 
+        # if midpoint in left sorted array compare with array[0]
+
+        l,r = 0, len(nums)-1
+        minElem = nums[0] 
+
+        while l <= r: 
+            # check if nums is not rotated or rotated len(nums) times
+            if nums[l] < nums[r]:
+                minElem = min(minElem,nums[l])
+                break
+            mid = (l+r) // 2
+            minElem = min(minElem,nums[mid])
+            # check if mid in left sorted array 
+            if nums[mid] >= nums[l]:
+                # if true we need to search the right sorted 
+                l = mid + 1
+            else: 
+                r = mid - 1
+        return minElem
+            
