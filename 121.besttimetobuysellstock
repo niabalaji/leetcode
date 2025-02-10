@@ -1,0 +1,30 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        # brute force -> does not work O(n^2)
+            # compare each val with vals after val 
+        """maxProfit = 0
+        for i in range(len(prices)):
+            for j in range(i+1,len(prices)):
+                profit = prices[j]-prices[i]
+                if profit > maxProfit:
+                    maxProfit = profit
+        return maxProfit
+        """
+        # optimized solution
+            # we need to ensure that the buy date is before the sell date
+        maxProfit = 0 
+        minPrice = float('inf')
+
+        # for each price in prices - check minPrice and maxProfit
+        for price in prices:
+            if price < minPrice: 
+                minPrice = price
+            elif (price-minPrice) > maxProfit: # compare current price to minPrice
+                maxProfit = price-minPrice
+        return maxProfit
+
+                    
