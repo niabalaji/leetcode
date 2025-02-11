@@ -1,0 +1,40 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def mergeTwoLists(self, list1, list2):
+        """
+        :type list1: Optional[ListNode]
+        :type list2: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        l1,l2 = list1, list2
+        dummy = ListNode()
+        tail = dummy # used to create new list
+
+        # compare list1 value to list2 value 
+        while l1 and l2: # non empty
+            # val of l1 < val of l2 -> we take the l1 val
+            if l1.val < l2.val:
+                # insert l1 val after tail (NULL node)
+                tail.next = l1
+                # update l1 pointer
+                l1 = l1.next
+            else: # l2 is < or = l1 val (we dont have to seperately check the == condition bc it doesnt matter which val comes first in that case since they are equal so we can default to l2)
+                tail.next = l2
+                l2 = l2.next
+            # update tail pointer (outside of both conditionals bc either way needs to be updated)
+            tail = tail.next
+
+        # what if one list is larger than the other ? 
+            # since we know the lists are already sorted we can just append the rest of the list 
+            # to tail 
+        if l1:
+            tail.next = l1 
+        elif l2: 
+            tail.next = l2
+        # we return dummy.next bc it points to the head, while tail is the pointer used for merging
+        # and points to the end of the list
+        return dummy.next
