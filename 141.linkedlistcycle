@@ -1,0 +1,42 @@
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution(object):
+    def hasCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        # run through problem -> naive solution -> optimized solution
+        # run through visual of problem
+            # we start at the head, and iteratively look at the nodes after it
+                # if we reach NULL then there is no cycle
+            # if we reach a node that we have already visited > there is a cycle
+                # how can we keep track of visited nodes > hashset 
+        # brute force sol -> O(n) T & O(n) M
+        # visitedNodes = set() 
+        # while head: # have not reached null
+        #     if head in visitedNodes:
+        #         return True
+        #     visitedNodes.add(head)
+        #     head = head.next
+        # return False
+        # optimized solution - tortoise and hare algorithm 
+            # we need two pointers, fast and slow
+                # slow moves one position at a time
+                # fast moves two positions at a time
+            # if we ever reach NULL > we do not have a cycle (same as above)
+            # if the fast pointer ever reaches the slow pointer(collision) > there is a cycle
+                # if they ever meet we can be sure there is a cycle bc the fast pointer moves 2*as fast as slow, so if they are moving in a circle the fast pointer closes the gap 
+                # by 1 position each iteration -> we can be sure that there is a loop if they meet
+        fast,slow = head,head
+        while fast and fast.next: # fast could skip null if at second to last position in list
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast: 
+                return True
+        return False
+        
