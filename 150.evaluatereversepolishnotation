@@ -1,0 +1,35 @@
+class Solution(object):
+    def evalRPN(self, tokens):
+        """
+        :type tokens: List[str]
+        :rtype: int
+        """
+        # naive solution -> iterate through array of strings
+        # maintain a stack 
+        # look for op chars
+        # pop 2 values (store them in temp var)
+        # return int
+        stack = [] 
+        for char in tokens: 
+            if char == "+":
+                a = stack.pop() # last val
+                b = stack.pop() # first val
+                stack.append(b+a)
+            elif char == "-":
+                a = stack.pop()
+                b = stack.pop()
+                stack.append(b-a)
+            elif char == "*":
+                a = stack.pop()
+                b = stack.pop()
+                stack.append(b*a)
+            elif char == "/":
+                a = stack.pop()
+                b = stack.pop()
+                # when dividing negative numbers we want to round toward 0
+                # so we can do int(float(negative decimal)) > int truncates the decimal portion
+                stack.append(int(float(b)/a))
+            else:
+                stack.append(int(char))
+        return stack[0]
+        
