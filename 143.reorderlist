@@ -1,0 +1,39 @@
+
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+class Solution(object):
+    def reorderList(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: None Do not return anything, modify head in-place instead.
+        """
+        # visualize problem 
+        # [1,2,3,4] > [1,2] [3,4] > [1,4,2,3] 
+        # key point : "in-place" , dont modify values in nodes only nodes themselves
+        # brute force sol > 
+        # create an array of node vals in linked list
+        # result = [] 
+        # current = head
+        # while current:
+        #     result.append(current.val) 
+        #     current = current.next
+        # reordered = []
+        # l,r = 0, len(result) - 1
+        # while l <= r:
+        #     reordered.append(result[l])
+        #     if l != r: # so we dont duplicate the middle if there is an odd number in list
+        #         reordered.append(result[r])
+        #     l += 1
+        #     r -= 1
+        # # change the node vals to corresponding values in reordered list
+        # current = head
+        # for val in reordered: 
+        #     current.val = val
+        #     current = current.next
+        # optimized solution : 
+
+            
+            
