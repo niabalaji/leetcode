@@ -1,0 +1,26 @@
+class Solution(object):
+    def mergeAlternately(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: str
+        """
+        # have a two pointer solution 
+        # case: word1 len != word2len
+        one,two = 0,0
+        mystr = ""
+        while one < len(word1) and two < len(word2):
+            mystr += (word1[one])
+            mystr += (word2[two])
+            one += 1
+            two += 1
+        if one < len(word1):
+            mystr += (word1[one:])
+        elif two < len(word2):
+            mystr += (word2[two:])
+        return mystr
+
+
+        
+        
+
