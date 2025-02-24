@@ -1,0 +1,23 @@
+class Solution(object):
+    def gcdOfStrings(self, str1, str2):
+        """
+        :type str1: str
+        :type str2: str
+        :rtype: str
+        """
+        len1 = len(str1)
+        len2 = len(str2)
+
+        def isDivisor(x):
+            if len1 % x or len2 % x: # "goes in" w non-zero remainder
+                return False
+            # atp we assume we have the factor and see if it can create both strs
+            factor_1,factor_2 = len1 // x, len2 // x
+            return str1[:x] * factor_1 == str1 and str1[:x] * factor_2  == str2
+
+        
+        for x in range(min(len1,len2),0, -1): # iterates through smallest string backwards
+            if isDivisor(x):
+                return str1[:x]
+       
+        return ""
