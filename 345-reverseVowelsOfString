@@ -1,0 +1,18 @@
+class Solution(object):
+    def reverseVowels(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        s = list(s)
+        vowel = 'aeiouAEIOU'
+        # store idx of vowels and all vowels 
+        idxToReplace = [i for i,c in enumerate(s) if c in vowel] # list of ints
+        # storing vowels
+        vowelsToSwitch = [s[x] for x in idxToReplace]
+
+        vowelsToSwitch.reverse()
+        # to iterate thru two arr at same time use zip()
+        for idx,switchedVowel in zip(idxToReplace,vowelsToSwitch):
+            s[idx] = switchedVowel
+        return ''.join(s) # return as string
