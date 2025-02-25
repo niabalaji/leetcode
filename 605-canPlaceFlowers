@@ -1,0 +1,27 @@
+class Solution(object):
+    def canPlaceFlowers(self, flowerbed, n):
+        """
+        :type flowerbed: List[int]
+        :type n: int
+        :rtype: bool
+        """
+        # n is number of flowers to add 
+        # check every position if u can add a flower
+        counterFlowers = 0 
+        length = len(flowerbed)
+
+        for z in range(length):
+            if flowerbed[z] == 0:
+                prev_idx = (z == 0) or (flowerbed[z-1] == 0)
+                next_idx = (z == length-1) or (flowerbed[z+1] == 0)
+                if prev_idx and next_idx: 
+                    flowerbed[z] = 1
+                    counterFlowers += 1
+                    if counterFlowers >= n:
+                        return True
+        return counterFlowers >= n
+        
+     
+
+
+                                                                                 
