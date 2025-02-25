@@ -1,0 +1,21 @@
+class Solution(object):
+    def kidsWithCandies(self, candies, extraCandies):
+        """
+        :type candies: List[int]
+        :type extraCandies: int
+        :rtype: List[bool]
+        """
+        n = len(candies)
+        resBoolArr = [None] * n
+        maxInCandies = 0 
+        for num in candies:
+            if num > maxInCandies:
+                maxInCandies = num
+        for x in range(n): 
+            if candies[x]+extraCandies >= maxInCandies: 
+                resBoolArr[x] = True
+            elif candies[x]+extraCandies < maxInCandies: 
+                resBoolArr[x] = False
+        return resBoolArr
+
+        
