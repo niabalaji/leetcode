@@ -1,0 +1,33 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def rightSideView(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: List[int]
+        """
+        # we want to insert vals into the queue IN ORDER
+        # [1][2,3][5,4] etc
+        # we want to insert the right most vals at every level 
+        # we insert into the queue from the left
+        res = []
+        q = collections.deque([root])
+
+        while q: 
+            qLen = len(q)
+            rightSideNode = None
+            for i in range(qLen): # when this is done looping we will have the right most vals 
+                node = q.popleft()
+                if node:
+                    rightSideNode = node
+                    q.append(node.left)
+                    q.append(node.right)
+            if rightSideNode:
+                res.append(rightSideNode.val)
+        return res
+
+        
