@@ -1,0 +1,23 @@
+class Solution(object):
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        def backtrack(start, path):
+        # Append the current subset to the result (deep copy of path)
+            result.append(path[:])
+            # Explore further elements to include in the subset
+            for i in range(start, len(nums)):
+                # Include nums[i] in the subset
+                path.append(nums[i])
+                # Recursively call backtrack to include further elements
+                backtrack(i + 1, path)
+                # Backtrack: remove nums[i] from the subset before the next iteration
+                path.pop()
+
+        result = []
+        backtrack(0, [])
+        return result
+
+         
