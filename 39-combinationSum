@@ -1,0 +1,26 @@
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        def dfs(i, current, total):
+            if total == target:
+                result.append(current[:])
+                return
+            if total > target or i == len(candidates):
+                return
+            
+            # Include the current candidate and continue
+            current.append(candidates[i])
+            dfs(i, current, total + candidates[i])
+            
+            # Exclude the current candidate and move to the next
+            current.pop()
+            dfs(i + 1, current, total)
+        
+        result = []
+        dfs(0, [], 0)
+        return result
+        
