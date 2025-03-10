@@ -13,19 +13,19 @@ class Solution(object):
             return True
 
         """
-        CONSTRAINTS(?): 1) will nums always be valid(all elem ONLY of type int)
+        CONSTRAINTS(?): 1)will all elem in nums be ints
                         2)will nums ever be empty
-                        3)will nums have negative vals 
-                        4)max val of nums 
+                        3)will nums contain negative vals 
+                        4)max val in nums & len(nums)  
                         5)should output be in a specific format 
-                        6) mutating input ok? 
+                        6)is mutating input ok
         EDGE CASES: empty nums, single elem nums 
         DATA TYPES: set (stores a collection of unique elements , with no duplicates allowed)
         THOUGHT PROCESS:
         > we know that a set() can ONLY contain unique elements
         > we can compare the len(arr nums) to len(set(arr nums)) [converting arr>set O(N) time&mem complexity]
-        > if true we know the arr nums contains ONLY unique elements otherwise 
-        > false arr contains duplicates
+        > if (both len are eq) is true we know nums contains unique elements  
+        > if false nums contains duplicates
         TIME/MEM COMPLEXITY: O(n) for both 
         TRADE-OFFS: > sets are useful here but require more mem than a 1traditional list(bc overhead of hash used to implement O(1) loookup,insertion time) can be mem intensive esp if the input is very large. 
                     > using a set would work under these conditions, but we dont know the frequency of the elements
