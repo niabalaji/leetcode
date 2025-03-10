@@ -1,0 +1,45 @@
+class Solution(object):
+    def containsDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        # march 10 2025
+        lenArr = len(nums)
+        lenSetArr = len(set(nums))
+        if lenArr == lenSetArr: # if arr & set are eq we know there are NO DUPLICATES
+            return False
+        else:
+            return True
+
+        """
+        CONSTRAINTS(?): 1) will nums always be valid(all elem ONLY of type int)
+                        2)will nums ever be empty
+                        3)will nums have negative vals 
+                        4)max val of nums 
+                        5)should output be in a specific format 
+                        6) mutating input ok? 
+        EDGE CASES: empty nums, single elem nums 
+        DATA TYPES: set (stores a collection of unique elements , with no duplicates allowed)
+        THOUGHT PROCESS:
+        > we know that a set() can ONLY contain unique elements
+        > we can compare the len(arr nums) to len(set(arr nums)) [converting arr>set O(N) time&mem complexity]
+        > if true we know the arr nums contains ONLY unique elements otherwise 
+        > false arr contains duplicates
+        TIME/MEM COMPLEXITY: O(n) for both 
+        TRADE-OFFS: > sets are useful here but require more mem than a 1traditional list(bc overhead of hash used to implement O(1) loookup,insertion time) can be mem intensive esp if the input is very large. 
+                    > using a set would work under these conditions, but we dont know the frequency of the elements
+                    > doesnt maintain original order bc sets do not maintain order of elem
+         
+        Follow up Q: Given an integer array nums, return true if any value appears at least THRICE in the array, and return false if every element is distinct.
+        Ans: we can use a hash map in this case [but time and mem complexity will still be O(n)
+        for num in nums:
+            if num in hash_map:
+                increment hash_map[num].val 
+            else: 
+                initialize hash_map[num].val to 1 
+            if hash_map[num].val == 3:
+                found a val occuring at least thrice RETURN FALSE
+        return TRUE
+
+        
