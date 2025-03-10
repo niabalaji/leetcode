@@ -1,0 +1,43 @@
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        # march 10 2025 
+        """
+        CONSTRAINTS(?): 1)will s or t ever be empty? y
+                        2)will s and t always be strings? y
+                        3)will s and t only contain lowercase letters? y
+                        4)is mutating input ok
+        DATA TYPES: hash map (we know there are 26 possible keys)
+        EDGE CASES: s or t being empty, s==t
+        THOUGHT PROCESS: - check if lens are eq
+                         - iterate through s
+                         - increment val at hashmap[char[s]]
+                         - repeat for t
+                         - compare both hashmaps 
+                         - return 
+        TIME/MEM COMPLEXITY: > convert both strings to hashmap O(n)
+                             > comparing the hashmaps O(1)
+                             > overall O(n) for time and mem
+        TRADE-OFFS: 1) we could sort the strings and compare them iteratively > reduce mem > sorting algos are O(nlogn) 
+                    2) using a hashmap is scalable if the question changes to unicode char or uppercase letters.
+        """
+
+        dict_s = {}   
+        dict_t = {}  
+        len_s = len(s) 
+        len_t = len(t)
+
+        if len_s != len_t:
+            return False
+
+        #iterate through s 
+        for charS in s: 
+                dict_s[charS] = 1 + dict_s.get(charS,0)                        
+        for charT in t: 
+                dict_t[charT] = 1 + dict_t.get(charT,0)
+
+        return dict_s == dict_t
